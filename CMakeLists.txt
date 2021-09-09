@@ -260,3 +260,11 @@ target_link_libraries(joy_web_node ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 add_executable(abb_bridge_node src/main_abb_bridge.cpp src/abb_bridge.cpp )
 add_dependencies(abb_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(abb_bridge_node ${catkin_LIBRARIES})
+
+add_executable(gazebo_bridge_node src/main_gazebo_bridge.cpp src/gazebo_bridge.cpp )
+add_dependencies(gazebo_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(gazebo_bridge_node ${catkin_LIBRARIES})
+
+add_executable(gazebo_gripper_bridge_node src/main_gazebo_gripper_bridge.cpp src/gazebo_gripper_bridge.cpp)
+add_dependencies(gazebo_gripper_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(gazebo_gripper_bridge_node ${catkin_LIBRARIES})
