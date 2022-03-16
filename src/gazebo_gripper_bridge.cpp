@@ -4,7 +4,7 @@
 gazebo_gripper_bridge::gazebo_gripper_bridge()
 {
 	ros::NodeHandle n1_;
-	ros::NodeHandle n2_("prismatic_ee_controller");
+	ros::NodeHandle n2_("/prismatic_ee_controller");
 
 	//Subscriber
 	sub_curr_grip_ = n2_.subscribe("get_grip", 1, &gazebo_gripper_bridge::callback_curr_pos, this);
