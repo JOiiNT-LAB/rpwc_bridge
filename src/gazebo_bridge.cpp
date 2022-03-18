@@ -4,7 +4,7 @@
 gazebo_bridge::gazebo_bridge()
 {
     ros::NodeHandle n1_;
-	ros::NodeHandle n2_("/cartesian_quat_pose_controller");
+	ros::NodeHandle n2_("cartesian_quat_pose_controller");
 
 	//Subscriber
 	sub_curr_pos_ 		= n2_.subscribe("get_pose", 1, &gazebo_bridge::callback_curr_pose, this);
