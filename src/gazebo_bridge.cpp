@@ -47,7 +47,7 @@ void gazebo_bridge::callback_joint_states(const sensor_msgs::JointState::ConstPt
 	pub_joint_states_.publish(msg_joint_);
 }
 
-bool gazebo_bridge::callback_robot_curr_pose(rpwc::robot_curr_pose::Request &req, rpwc::robot_curr_pose::Response &res)
+bool gazebo_bridge::callback_robot_curr_pose(rpwc_bridge::robot_curr_pose::Request &req, rpwc_bridge::robot_curr_pose::Response &res)
 {
 	res.robot_curr_pose = msg_pose_;
 	return true;

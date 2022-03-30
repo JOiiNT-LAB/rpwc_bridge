@@ -26,7 +26,7 @@ void gazebo_gripper_bridge::callback_curr_pos(const std_msgs::Float64::ConstPtr&
 	pub_curr_grip_.publish(curr_grip_);
 }
 
-bool gazebo_gripper_bridge::callback_EE_curr_pos(rpwc::rpwc_gripper_pos::Request &req, rpwc::rpwc_gripper_pos::Response &res)
+bool gazebo_gripper_bridge::callback_EE_curr_pos(rpwc_bridge::rpwc_gripper_pos::Request &req, rpwc_bridge::rpwc_gripper_pos::Response &res)
 {
 	res.EE_pos_ = curr_grip_;
 	return true;
@@ -38,7 +38,7 @@ void gazebo_gripper_bridge::callback_rpwc_gripper_cmd(const std_msgs::Float64::C
 	pub_grip_des_.publish(grip_des_);
 }
 
-bool gazebo_gripper_bridge::callback_rpwc_gripper_single_cmd(rpwc::rpwc_gripper_cmd::Request &req, rpwc::rpwc_gripper_cmd::Response &res)
+bool gazebo_gripper_bridge::callback_rpwc_gripper_single_cmd(rpwc_bridge::rpwc_gripper_cmd::Request &req, rpwc_bridge::rpwc_gripper_cmd::Response &res)
 {
 	grip_des_ = req.EE_cmd_;
 	pub_grip_des_.publish(grip_des_);

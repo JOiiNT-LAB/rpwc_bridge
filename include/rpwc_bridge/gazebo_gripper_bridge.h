@@ -1,6 +1,6 @@
 #include <ros/ros.h>
-#include <rpwc/rpwc_gripper_cmd.h>
-#include <rpwc/rpwc_gripper_pos.h>
+#include <rpwc_bridge/rpwc_gripper_cmd.h>
+#include <rpwc_bridge/rpwc_gripper_pos.h>
 #include <actionlib/client/simple_action_client.h>
 #include <actionlib/client/terminal_state.h>
 
@@ -15,9 +15,9 @@ public:
 
 private:
 	void callback_curr_pos(const std_msgs::Float64::ConstPtr& msg);
-	bool callback_EE_curr_pos(rpwc::rpwc_gripper_pos::Request &req, rpwc::rpwc_gripper_pos::Response &res);
+	bool callback_EE_curr_pos(rpwc_bridge::rpwc_gripper_pos::Request &req, rpwc_bridge::rpwc_gripper_pos::Response &res);
 	void callback_rpwc_gripper_cmd(const std_msgs::Float64::ConstPtr& msg);
-	bool callback_rpwc_gripper_single_cmd(rpwc::rpwc_gripper_cmd::Request  &req, rpwc::rpwc_gripper_cmd::Response &res);
+	bool callback_rpwc_gripper_single_cmd(rpwc_bridge::rpwc_gripper_cmd::Request  &req, rpwc_bridge::rpwc_gripper_cmd::Response &res);
 
 	ros::Subscriber sub_curr_grip_, sub_rpwc_gripper_cmd_;
 	ros::Publisher pub_grip_des_, pub_curr_grip_;

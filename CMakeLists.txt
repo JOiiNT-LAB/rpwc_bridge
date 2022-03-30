@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
 #   apriltag_ros
   message_generation
+  cv_bridge
 )
 set(Poco_DIR cmake)
 find_package(Poco REQUIRED COMPONENTS Foundation)
@@ -63,6 +64,10 @@ find_package(OpenCV)
 # Generate services in the 'srv' folder
 add_service_files(
   FILES
+  CameraData.srv
+  robot_curr_pose.srv
+  rpwc_gripper_cmd.srv
+  rpwc_gripper_pos.srv
   setup_hardware.srv
   set_controller.srv
   set_controller_web.srv
@@ -80,6 +85,7 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs
+  sensor_msgs
 )
 
 ################################################
@@ -268,3 +274,11 @@ target_link_libraries(gazebo_bridge_node ${catkin_LIBRARIES})
 add_executable(gazebo_gripper_bridge_node src/main_gazebo_gripper_bridge.cpp src/gazebo_gripper_bridge.cpp)
 add_dependencies(gazebo_gripper_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(gazebo_gripper_bridge_node ${catkin_LIBRARIES})
+
+add_executable(zivid_bridge_node src/main_zivid_bridge.cpp src/zivid_bridge.cpp )
+add_dependencies(zivid_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(zivid_bridge_node ${catkin_LIBRARIES})
+
+add_executable(realsense_bridge_node src/main_realsense_bridge.cpp src/realsense_bridge.cpp )
+add_dependencies(realsense_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(realsense_bridge_node ${catkin_LIBRARIES})
