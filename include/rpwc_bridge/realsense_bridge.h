@@ -34,6 +34,6 @@ private:
 	sensor_msgs::PointCloud2	msg_pc2_;
 	sensor_msgs::Image			msg_img_;
 
-	bool flag_pc2_;
-	bool flag_img_;
+	bool 						flag_pc2_;
+	bool 						flag_img_;
 };

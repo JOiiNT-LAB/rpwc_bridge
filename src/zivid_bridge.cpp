@@ -4,14 +4,8 @@
 zivid_bridge::zivid_bridge()
 {
   ros::NodeHandle n;
-  const ros::Duration default_wait_duration{ 30 };
 
   ROS_INFO("Starting zivid_bridge.cpp");
-
-  CHECK(ros::service::waitForService(ca_suggest_settings_service_name_, default_wait_duration));
-
-  ROS_INFO("Configuring image settings");
-  capture_assistant_suggest_settings();
 
   flag_pc2_ = false;
   flag_img_ = false;
@@ -24,6 +18,8 @@ zivid_bridge::zivid_bridge()
   image_color_pub_ 	      = n.advertise<sensor_msgs::Image>("/camera/color/image_raw", 1);
   // Servers
   server_camera_capture_  = n.advertiseService("rpwc_camera_data", &zivid_bridge::callback_camera_data, this);
+  // Clients
+  load_settings_          = n.serviceClient<zivid_camera::LoadSettingsFromFile>("/zivid_camera/load_settings_from_file");
 }
 
 zivid_bridge::~zivid_bridge(){}
@@ -41,7 +37,7 @@ void zivid_bridge::on_image_color(const sensor_msgs::Image::ConstPtr& msg)
 {
   ROS_INFO("2D color image received");
   cv_bridge::CvImagePtr cv_ptr;
-  cv_ptr   = cv_bridge::toCvCopy(msg, "rgb8");
+  cv_ptr   = cv_bridge::toCvCopy(msg, "rgb8");                                            // Transforming image encoding to rgb8
   msg_img_ = cv_bridge::CvImage(std_msgs::Header(), "rgb8", cv_ptr->image).toImageMsg();
   image_color_pub_.publish(*msg_img_);
   flag_img_ = true;
@@ -49,6 +45,11 @@ void zivid_bridge::on_image_color(const sensor_msgs::Image::ConstPtr& msg)
 
 bool zivid_bridge::callback_camera_data(rpwc_bridge::CameraData::Request &req, rpwc_bridge::CameraData::Response &res)
 {
+  zivid_camera::LoadSettingsFromFile file;
+  file.request.file_path = req.file_path;
+  if (load_settings_.call(file)) ROS_INFO("Loading image settings");
+  else ROS_ERROR("Failed to call service load_settings_from_file");  
+
   capture();
 
   while (!flag_pc2_ || !flag_img_)
@@ -71,16 +72,4 @@ void zivid_bridge::capture()
   ROS_INFO("Calling capture service");
   zivid_camera::Capture capture;
   CHECK(ros::service::call("/zivid_camera/capture", capture));
-}
-
-void zivid_bridge::capture_assistant_suggest_settings()
-{
-  zivid_camera::CaptureAssistantSuggestSettings cass;
-  cass.request.max_capture_time = ros::Duration{ 1.20 };
-  cass.request.ambient_light_frequency =
-      zivid_camera::CaptureAssistantSuggestSettings::Request::AMBIENT_LIGHT_FREQUENCY_NONE;
-
-  ROS_INFO_STREAM("Calling " << ca_suggest_settings_service_name_
-                             << " with max capture time = " << cass.request.max_capture_time << " sec");
-  CHECK(ros::service::call(ca_suggest_settings_service_name_, cass));
 }

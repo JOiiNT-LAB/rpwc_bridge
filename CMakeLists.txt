@@ -16,7 +16,6 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
 #   apriltag_ros
   message_generation
-  cv_bridge
 )
 set(Poco_DIR cmake)
 find_package(Poco REQUIRED COMPONENTS Foundation)
