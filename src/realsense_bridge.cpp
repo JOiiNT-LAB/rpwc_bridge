@@ -13,6 +13,8 @@ realsense_bridge::realsense_bridge()
   // Subscibers
   points_sub_             = n.subscribe("/camera/depth_registered/points", 1, &realsense_bridge::on_points, this);
   image_color_sub_        = n.subscribe("/camera/color/image_raw", 1, &realsense_bridge::on_image_color, this);
+  // Publishers
+  points_pub_ 		        = n.advertise<sensor_msgs::PointCloud2>("/camera/depth/points", 1);
   // Servers
   server_camera_capture_  = n.advertiseService("rpwc_camera_data", &realsense_bridge::callback_camera_data, this);
 }
@@ -39,6 +41,8 @@ bool realsense_bridge::callback_camera_data(rpwc_bridge::CameraData::Request &re
     usleep(1000000);
     ros::spinOnce();
   }
+
+  points_pub_.publish(msg_pc2_);
 
   flag_pc2_ = false;
   flag_img_ = false;

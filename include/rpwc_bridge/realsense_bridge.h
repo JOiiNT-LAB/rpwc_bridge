@@ -29,6 +29,7 @@ private:
 	bool callback_camera_data(rpwc_bridge::CameraData::Request &req, rpwc_bridge::CameraData::Response &res);
 
 	ros::Subscriber 			points_sub_, image_color_sub_;
+	ros::Publisher 				points_pub_;
 	ros::ServiceServer 			server_camera_capture_;
 
 	sensor_msgs::PointCloud2	msg_pc2_;
