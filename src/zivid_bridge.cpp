@@ -52,7 +52,7 @@ bool zivid_bridge::callback_camera_data(rpwc_bridge::CameraData::Request &req, r
 
   capture();
 
-  while (!flag_pc2_ || !flag_img_)
+  while (!flag_pc2_ && !flag_img_)
   {
     usleep(1000000);
     ros::spinOnce();
