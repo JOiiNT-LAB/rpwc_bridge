@@ -11,7 +11,7 @@ zivid_bridge::zivid_bridge()
   flag_img_ = false;
 
   // Subscibers
-  points_sub_             = n.subscribe("/zivid_camera/points/xyzrgba", 1, &zivid_bridge::on_points, this);
+  points_sub_             = n.subscribe("/zivid_camera/points/xyzrgb", 1, &zivid_bridge::on_points, this);
   image_color_sub_        = n.subscribe("/zivid_camera/color/image_color", 1, &zivid_bridge::on_image_color, this);
   // Publishers
   points_pub_ 		        = n.advertise<sensor_msgs::PointCloud2>("/camera/depth_registered/points", 1);
