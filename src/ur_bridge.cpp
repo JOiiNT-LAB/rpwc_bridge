@@ -75,7 +75,7 @@ void ur_bridge::callback_rpwc_pose_des(const geometry_msgs::Pose::ConstPtr& msg)
 	pub_pos_des_.publish(send_pose);
 }
 
-bool ur_bridge::callback_robot_curr_pose(rpwc::robot_curr_pose::Request  &req, rpwc::robot_curr_pose::Response &res)
+bool ur_bridge::callback_robot_curr_pose(rpwc_bridge::robot_curr_pose::Request  &req, rpwc_bridge::robot_curr_pose::Response &res)
 {
 	geometry_msgs::Pose robot_curr_pose;
 	robot_curr_pose.orientation.w = quat_base2EE_.w();

@@ -1,13 +1,13 @@
 
 #include <ros/ros.h>
 #include <ros/rate.h>
-#include <rpwc/rpwc_gripper_cmd.h>
+#include <rpwc_bridge/rpwc_gripper_cmd.h>
 #include <std_msgs/Float64.h>
 
 
 ros::Publisher pub_hand_des_;
 
-bool callback_rpwc_gripper_single_cmd(rpwc::rpwc_gripper_cmd::Request  &req, rpwc::rpwc_gripper_cmd::Response &res)
+bool callback_rpwc_gripper_single_cmd(rpwc_bridge::rpwc_gripper_cmd::Request  &req, rpwc_bridge::rpwc_gripper_cmd::Response &res)
 {
   	std_msgs::Float64 hand_cmd;
   	hand_cmd.data = req.EE_cmd_.data;

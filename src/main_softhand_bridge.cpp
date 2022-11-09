@@ -1,7 +1,7 @@
 
 #include <ros/ros.h>
 #include <ros/rate.h>
-#include <rpwc/rpwc_gripper_cmd.h>
+#include <rpwc_bridge/rpwc_gripper_cmd.h>
 #include <std_msgs/Float64.h>
 #include <trajectory_msgs/JointTrajectory.h>
 
@@ -9,7 +9,7 @@
 trajectory_msgs::JointTrajectory send_hand_;
 ros::Publisher pub_hand_des_, pub_CommandHand_test_;
 
-bool callback_rpwc_gripper_single_cmd(rpwc::rpwc_gripper_cmd::Request  &req, rpwc::rpwc_gripper_cmd::Response &res)
+bool callback_rpwc_gripper_single_cmd(rpwc_bridge::rpwc_gripper_cmd::Request  &req, rpwc_bridge::rpwc_gripper_cmd::Response &res)
 {
 	send_hand_.points.clear();
   	send_hand_.points.resize(1);

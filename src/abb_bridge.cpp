@@ -44,7 +44,7 @@ void abb_bridge::callback_rpwc_pose_des(const geometry_msgs::Pose::ConstPtr& msg
 	pub_pos_des_.publish(send_pose);
 }
 
-bool abb_bridge::callback_robot_curr_pose(rpwc::robot_curr_pose::Request  &req, rpwc::robot_curr_pose::Response &res)
+bool abb_bridge::callback_robot_curr_pose(rpwc_bridge::robot_curr_pose::Request  &req, rpwc_bridge::robot_curr_pose::Response &res)
 {
 	res.robot_curr_pose = msg_pose_;
 	return true;

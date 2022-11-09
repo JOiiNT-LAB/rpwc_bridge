@@ -10,9 +10,7 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  rpwc
   std_msgs
-  franka_gripper
   cv_bridge
 #   apriltag_ros
   message_generation
@@ -225,13 +223,13 @@ include_directories(
 # catkin_add_nosetests(test)
 
 
-add_executable(franka_bridge_node src/main_franka_bridge.cpp src/franka_bridge.cpp )
-add_dependencies(franka_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(franka_bridge_node ${catkin_LIBRARIES})
+# add_executable(franka_bridge_node src/main_franka_bridge.cpp src/franka_bridge.cpp )
+# add_dependencies(franka_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(franka_bridge_node ${catkin_LIBRARIES})
 
-add_executable(franka_gripper_bridge_node src/main_franka_gripper_bridge.cpp src/franka_gripper_bridge.cpp)
-add_dependencies(franka_gripper_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(franka_gripper_bridge_node ${catkin_LIBRARIES})
+# add_executable(franka_gripper_bridge_node src/main_franka_gripper_bridge.cpp src/franka_gripper_bridge.cpp)
+# add_dependencies(franka_gripper_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(franka_gripper_bridge_node ${catkin_LIBRARIES})
 
 add_executable(softhand_bridge_node src/main_softhand_bridge.cpp)
 add_dependencies(softhand_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

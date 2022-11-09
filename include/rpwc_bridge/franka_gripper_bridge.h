@@ -1,9 +1,9 @@
 #include <ros/ros.h>
 #include <franka_msgs/FrankaState.h>
-#include <rpwc/robot_curr_pose.h>
+#include <rpwc_bridge/robot_curr_pose.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Pose.h>
-#include <rpwc/rpwc_gripper_cmd.h>
+#include <rpwc_bridge/rpwc_gripper_cmd.h>
 #include <actionlib/client/simple_action_client.h>
 #include <actionlib/client/terminal_state.h>
 #include <franka_gripper/GraspAction.h>
@@ -45,8 +45,8 @@ public:
 
 private:
 	void callback_rpwc_gripper_cmd(const std_msgs::Float64::ConstPtr& msg);
-	bool callback_rpwc_gripper_single_cmd(rpwc::rpwc_gripper_cmd::Request  &req, rpwc::rpwc_gripper_cmd::Response &res);
-	bool callback_rpwc_gripper_single_move_cmd(rpwc::rpwc_gripper_cmd::Request  &req, rpwc::rpwc_gripper_cmd::Response &res);
+	bool callback_rpwc_gripper_single_cmd(rpwc_bridge::rpwc_gripper_cmd::Request  &req, rpwc_bridge::rpwc_gripper_cmd::Response &res);
+	bool callback_rpwc_gripper_single_move_cmd(rpwc_bridge::rpwc_gripper_cmd::Request  &req, rpwc_bridge::rpwc_gripper_cmd::Response &res);
 
 
 	ros::NodeHandle n_;

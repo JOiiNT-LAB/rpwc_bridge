@@ -1,5 +1,5 @@
 #include <ros/ros.h>
-#include <rpwc/robot_curr_pose.h>
+#include <rpwc_bridge/robot_curr_pose.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Pose.h>
 
@@ -22,7 +22,7 @@ private:
 
 	void callback_curr_pose(const geometry_msgs::Pose::ConstPtr& msg);
 	void callback_rpwc_pose_des(const geometry_msgs::Pose::ConstPtr& msg);
-	bool callback_robot_curr_pose(rpwc::robot_curr_pose::Request  &req, rpwc::robot_curr_pose::Response &res);
+	bool callback_robot_curr_pose(rpwc_bridge::robot_curr_pose::Request  &req, rpwc_bridge::robot_curr_pose::Response &res);
 
 	ros::Subscriber sub_curr_pos_, sub_rpwc_pose_des_;
 	ros::Publisher pub_pos_des_, pub_curr_pos_;

@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <ros/rate.h>
-#include <rpwc/rpwc_gripper_cmd.h>
+#include <rpwc_bridge/rpwc_gripper_cmd.h>
 #include <std_msgs/Float64.h>
 #include <onrobot_msgs/onrobot_gripper.h>
 
@@ -10,7 +10,7 @@ ros::Publisher pub_gripper_des_;
 bool grasping_ = false;
 onrobot_msgs::onrobot_gripper cmd_msg_;
 
-bool callback_rpwc_gripper_single_cmd(rpwc::rpwc_gripper_cmd::Request  &req, rpwc::rpwc_gripper_cmd::Response &res)
+bool callback_rpwc_gripper_single_cmd(rpwc_bridge::rpwc_gripper_cmd::Request  &req, rpwc_bridge::rpwc_gripper_cmd::Response &res)
 {
 	if(req.EE_cmd_.data >= 0.5 && !grasping_)
 	{
